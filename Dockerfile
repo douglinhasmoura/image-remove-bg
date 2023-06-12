@@ -7,10 +7,9 @@ WORKDIR /app
 # Copia o código da aplicação para o diretório de trabalho
 COPY . /app
 
-# Define um usuário não-root para executar a aplicação
-RUN groupadd -g 1000 appuser && \
-    useradd -r -u 1000 -g appuser appuser
-USER appuser
+# Cria e ativa um ambiente virtual
+RUN python -m venv venv
+ENV PATH="/app/venv/bin:$PATH"
 
 # Instala as dependências do projeto
 RUN pip install --no-cache-dir -r requirements.txt
