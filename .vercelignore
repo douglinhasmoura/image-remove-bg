@@ -1,8 +1,7 @@
 node_modules
 .serverless
-.idea
 __pycache__
-serverless.yml
-package-lock.json
 package.json
-.vercel
+package-lock.json
+serverless.yml
+.idea
