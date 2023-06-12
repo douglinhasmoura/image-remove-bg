@@ -1,6 +1,14 @@
 # Define a imagem base
 FROM python:3.10
 
+
+RUN pip install --upgrade pip
+
+RUN adduser -D myuser
+USER myuser
+WORKDIR /home/myuser
+
+
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
 
@@ -8,7 +16,9 @@ WORKDIR /app
 COPY . /app
 
 # Instala as dependências do projeto
-RUN pip install --no-cache-dir -r requirements.txt
+
+COPY --chown=myuser:myuser requirements.txt requirements.txt
+RUN pip install --user -r requirements.txt
 
 # Expõe a porta em que a aplicação irá rodar
 EXPOSE 5000
