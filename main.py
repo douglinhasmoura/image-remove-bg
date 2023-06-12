@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 from rembg import remove
 
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route('/remove_background', methods=['POST'])
+@application.route('/remove_background', methods=['POST'])
 def remove_background():
     if 'image' not in request.files:
         return jsonify({'error': 'No image uploaded'}), 400
@@ -19,4 +19,4 @@ def remove_background():
     return output, 200, {'Content-Type': 'image/png'}
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
