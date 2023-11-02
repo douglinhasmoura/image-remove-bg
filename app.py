@@ -18,7 +18,3 @@ def remove_background():
         return jsonify({'error': 'Failed to process image', 'details': str(e)}), 500
 
     return output, 200, {'Content-Type': 'image/png'}
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
