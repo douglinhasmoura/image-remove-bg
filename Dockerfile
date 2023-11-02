@@ -1,21 +1,21 @@
-# Define a imagem base
+# Use the official Python image from Docker Hub as a base image
 FROM python:3.10
 
-# Define o diretório de trabalho dentro do container
+# Set the working directory within the container
 WORKDIR /app
 
-# Copia o código da aplicação para o diretório de trabalho
+# Copy the application code into the container
 COPY . /app
 
-# Cria e ativa um ambiente virtual
+# Create and activate a virtual environment
 RUN python -m venv venv
 ENV PATH="/app/venv/bin:$PATH"
 
-# Instala as dependências do projeto
+# Install the necessary dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expõe a porta em que a aplicação irá rodar
+# Expose the port that Gunicorn will listen on
 EXPOSE 5000
 
-# Define o comando para iniciar a aplicação
-CMD ["python", "main.py"]
+# Define the command to run your application with Gunicorn
+CMD ["gunicorn", "main:app", "--bind", "0.0.0.0:5000"]

@@ -1,7 +1,5 @@
-node_modules
-.serverless
 __pycache__
-package.json
-package-lock.json
-serverless.yml
-.idea
+.git
+.venv
+.vscode
+*.pyc
