@@ -3,6 +3,7 @@ from rembg import remove
 
 app = Flask(__name__)
 
+
 @app.route('/remove_background', methods=['POST'])
 def remove_background():
     if 'image' not in request.files:
@@ -18,5 +19,6 @@ def remove_background():
 
     return output, 200, {'Content-Type': 'image/png'}
 
+
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
